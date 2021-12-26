@@ -4,13 +4,22 @@ import 'package:routinely/domain/services/routine_service.dart';
 
 class AddRoutineController extends ChangeNotifier {
   final RoutineService _routineService;
+  late String name;
+  late String description;
+
   AddRoutineController(this._routineService);
-  Future<void> addRoutine(String title, String description) async {
-    Routine routine = Routine(title, description);
+
+  Future<void> handleSubmit(BuildContext context) async {
+    bool successful = await addRoutine();
+    if (successful) Navigator.pop(context);
+  }
+
+  Future<bool> addRoutine() async {
+    Routine routine = Routine(name, description);
     bool isSuccessful = await _routineService.addRoutine(routine);
     if (isSuccessful) {
-      return;
+      return true;
     }
-    return;
+    return false;
   }
 }
