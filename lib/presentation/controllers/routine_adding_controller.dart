@@ -15,7 +15,7 @@ class AddRoutineController extends ChangeNotifier {
   }
 
   Future<bool> addRoutine() async {
-    Routine routine = Routine(name, description);
+    Routine routine = Routine.noId(name, description);
     bool isSuccessful = await _routineService.addRoutine(routine);
     if (isSuccessful) {
       return true;

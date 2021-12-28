@@ -3,7 +3,9 @@ import 'package:routinely/core/database.dart';
 import 'package:routinely/data/repositories/routine_repository.dart';
 import 'package:routinely/domain/services/routine_service.dart';
 import 'package:routinely/presentation/controllers/routine_adding_controller.dart';
+import 'package:routinely/presentation/controllers/routine_update_controller.dart';
 import 'package:routinely/presentation/controllers/routine_viewing_controller.dart';
+import 'package:routinely/presentation/controllers/routine_viewing_listing_controller.dart';
 
 final di = GetIt.instance;
 void injectDependencies() {
@@ -11,5 +13,8 @@ void injectDependencies() {
   di.registerLazySingleton(() => RoutineRepository(di<RoutineDatabase>()));
   di.registerLazySingleton(() => RoutineService(di<RoutineRepository>()));
   di.registerFactory(() => AddRoutineController(di<RoutineService>()));
-  di.registerFactory(() => ViewRoutineController(di<RoutineService>()));
+  di.registerFactory(
+      () => RoutineViewingListingController(di<RoutineService>()));
+  di.registerFactory(() => RoutineViewingController(di<RoutineService>()));
+  di.registerFactory(() => RoutineUpdateController(di<RoutineService>()));
 }

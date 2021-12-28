@@ -11,7 +11,7 @@ import 'routine_service_test.mocks.dart';
 @GenerateMocks([RoutineRepository])
 void main() {
   MockRoutineRepository routineRepository = MockRoutineRepository();
-  Routine routine = const Routine("Test", 'ABC');
+  Routine routine = const Routine.noId("Test", 'ABC');
   RoutineService routineService = RoutineService(routineRepository);
   group('adding a routine', () {
     test('returns true if the routine is added successfully', () async {

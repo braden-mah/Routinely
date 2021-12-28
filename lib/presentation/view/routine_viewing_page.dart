@@ -4,25 +4,36 @@ import 'package:provider/provider.dart';
 import 'package:routinely/presentation/controllers/routine_viewing_controller.dart';
 
 class RoutineViewingPage extends StatelessWidget {
-  static const String route = '/';
+  static const String route = '/viewRoutine';
   const RoutineViewingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<ViewRoutineController>(context);
+    final controller = Provider.of<RoutineViewingController>(context);
     return Scaffold(
-        appBar: AppBar(title: const Text('Routinely')),
-        body: ListView.builder(
-          itemCount: controller.routines.length,
-          itemBuilder: (BuildContext context, int index) {
-            final item = controller.routines[index];
-            return Card(
-                child: ListTile(
-                    title: Text(item.title), subtitle: Text(item.description)));
-          },
+      appBar: AppBar(title: Text(controller.routine.title), actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 12.0),
+          child: IconButton(
+              onPressed: () => controller.handleDelete(context),
+              icon: const Icon(Icons.delete)),
         ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () => controller.goToAddRoutinePage(context),
-            child: const Icon(Icons.add)));
+        Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
+              onPressed: () => {controller.goToUpdatePage(context)},
+              icon: const Icon(Icons.edit),
+            ))
+      ]),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Text(controller.routine.description,
+                style: const TextStyle(fontSize: 16)),
+          ],
+        ),
+      ),
+    );
   }
 }

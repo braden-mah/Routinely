@@ -3,7 +3,7 @@ import 'package:routinely/data/mappers/routine_mapper.dart';
 import 'package:routinely/domain/entities/routine_entity.dart';
 
 void main() {
-  Routine routine = const Routine('test 123', 'abc');
+  Routine routine = const Routine.noId('test 123', 'abc');
   Map<String, dynamic> map = {'title': 'test 123', 'description': 'abc'};
   group('test mapping functionality of model', () {
     test('routine to map', () {

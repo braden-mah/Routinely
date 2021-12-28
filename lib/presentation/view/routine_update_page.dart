@@ -2,24 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:routinely/core/view/custom_text_field.dart';
-import 'package:routinely/presentation/controllers/routine_adding_controller.dart';
+import 'package:routinely/presentation/controllers/routine_update_controller.dart';
 
-class RoutineAddingPage extends StatelessWidget {
-  static const String route = '/addRoutine';
-  const RoutineAddingPage({Key? key}) : super(key: key);
+class RoutineUpdatePage extends StatelessWidget {
+  static const String route = '/updateRoutine';
+  const RoutineUpdatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<AddRoutineController>(context);
-    final _formKey = GlobalKey<FormState>();
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    final controller = Provider.of<RoutineUpdateController>(context);
     return Form(
       key: _formKey,
       child: Scaffold(
-        appBar: AppBar(title: const Text('Add Routine')),
+        appBar: AppBar(title: const Text('Edit Routine')),
         body: ListView(children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
             child: CustomTextField(
+              initialValue: controller.name,
               validator: (val) {
                 if (val == null || val.isEmpty) {
                   return "Field can't be empty";
@@ -37,6 +38,7 @@ class RoutineAddingPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
             child: CustomTextField(
               lines: 10,
+              initialValue: controller.description,
               validator: (val) {
                 if (val == null || val.isEmpty) {
                   return "Field can't be empty";
@@ -54,7 +56,7 @@ class RoutineAddingPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                controller.handleSubmit(context);
+                controller.handleUpdate(context);
               }
             },
             child: const Icon(Icons.check)),
