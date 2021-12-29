@@ -4,10 +4,12 @@ import 'package:routinely/core/database.dart';
 import 'package:routinely/dependency_injector.dart';
 import 'package:routinely/domain/entities/routine_entity.dart';
 import 'package:routinely/presentation/controllers/routine_adding_controller.dart';
+import 'package:routinely/presentation/controllers/routine_entry_adding_controller.dart';
 import 'package:routinely/presentation/controllers/routine_update_controller.dart';
 import 'package:routinely/presentation/controllers/routine_viewing_controller.dart';
 import 'package:routinely/presentation/controllers/routine_viewing_listing_controller.dart';
 import 'package:routinely/presentation/view/routine_adding_page.dart';
+import 'package:routinely/presentation/view/routine_entry_adding_page.dart';
 import 'package:routinely/presentation/view/routine_update_page.dart';
 import 'package:routinely/presentation/view/routine_viewing_listing_page.dart';
 import 'package:routinely/presentation/view/routine_viewing_page.dart';
@@ -38,6 +40,10 @@ class MyApp extends StatelessWidget {
               create: (_) => di<RoutineUpdateController>()
                 ..init(settings.arguments as Routine),
               child: const RoutineUpdatePage()),
+          RoutineEntryAddingPage.route: ChangeNotifierProvider(
+              create: (_) => di<RoutineEntryAddingController>()
+                ..init(settings.arguments as Routine),
+              child: const RoutineEntryAddingPage()),
         };
         return MaterialPageRoute(builder: (ctx) => routeMap[settings.name]!);
       },

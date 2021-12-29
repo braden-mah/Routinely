@@ -10,6 +10,8 @@ class RoutineDatabase {
         onCreate: (db, version) async {
       await db.execute(
           'CREATE TABLE routines(id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL)');
+      await db.execute(
+          'CREATE TABLE entries(id INTEGER NOT NULL PRIMARY KEY, routineId INTEGER NOT NULL, note TEXT, date TEXT)');
     }, version: 1);
   }
 }

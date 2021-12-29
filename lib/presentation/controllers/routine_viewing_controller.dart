@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:routinely/domain/entities/routine_entity.dart';
+import 'package:routinely/domain/entities/routine_entry_entity.dart';
+import 'package:routinely/domain/services/routine_entry_service.dart';
 import 'package:routinely/domain/services/routine_service.dart';
+import 'package:routinely/presentation/view/routine_entry_adding_page.dart';
 import 'package:routinely/presentation/view/routine_update_page.dart';
 
 class RoutineViewingController extends ChangeNotifier {
   late final Routine routine;
   final RoutineService _routineService;
-  RoutineViewingController(this._routineService);
+  final RoutineEntryService _routineEntryService;
+  RoutineViewingController(this._routineService, this._routineEntryService);
   void init(Routine routine) async {
     this.routine = routine;
   }
@@ -35,5 +39,17 @@ class RoutineViewingController extends ChangeNotifier {
 
   void goToUpdatePage(BuildContext context) async {
     Navigator.pushNamed(context, RoutineUpdatePage.route, arguments: routine);
+  }
+
+  void goToAddEntryPage(BuildContext context) async {
+    await Navigator.pushNamed(context, RoutineEntryAddingPage.route,
+        arguments: routine);
+    await getAllRoutineEntries();
+  }
+
+  Future<void> getAllRoutineEntries() async {
+    List<RoutineEntry> routineEntries =
+        await _routineEntryService.getAllRoutineEntries(routine.id!);
+    print(routineEntries[1].id);
   }
 }

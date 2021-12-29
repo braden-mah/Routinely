@@ -15,9 +15,9 @@ class RoutineRepository {
   }
 
   Future<bool> updateRoutine(int id, Routine routine) async {
-    int entriesUpdated = await _database.db.update(
-        'routines', RoutineMapper.toMap(routine),
-        where: 'id = ?', whereArgs: [id]);
+    int entriesUpdated = await _database.db.rawUpdate(
+        'UPDATE routines SET name = ?, description = ? WHERE id = ?',
+        [routine.title, routine.description, id]);
     return (entriesUpdated == 1);
   }
 

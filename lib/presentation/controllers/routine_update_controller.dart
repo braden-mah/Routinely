@@ -16,7 +16,7 @@ class RoutineUpdateController extends ChangeNotifier {
   }
 
   void handleUpdate(BuildContext context) async {
-    Routine routine = Routine.withId(id, name, description);
+    Routine routine = Routine.noId(name, description);
     await _routineService.updateRoutine(id, routine);
     Navigator.pop(context);
     Navigator.pop(context);
