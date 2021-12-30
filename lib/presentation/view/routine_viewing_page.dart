@@ -27,11 +27,26 @@ class RoutineViewingPage extends StatelessWidget {
         ]),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              Text(controller.routine.description,
-                  style: const TextStyle(fontSize: 16)),
-            ],
+          child: SingleChildScrollView(
+            physics: const ScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(controller.routine.description,
+                    style: const TextStyle(fontSize: 16)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.routine.checkboxes.length,
+                      itemBuilder: (context, index) {
+                        return Text(
+                            '- ${controller.routine.checkboxes[index]}');
+                      }),
+                ),
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(

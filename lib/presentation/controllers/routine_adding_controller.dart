@@ -4,8 +4,9 @@ import 'package:routinely/domain/services/routine_service.dart';
 
 class AddRoutineController extends ChangeNotifier {
   final RoutineService _routineService;
-  late String name;
-  late String description;
+  late String name = '';
+  late String description = '';
+  late List<String> checkboxes = [];
 
   AddRoutineController(this._routineService);
 
@@ -15,11 +16,16 @@ class AddRoutineController extends ChangeNotifier {
   }
 
   Future<bool> addRoutine() async {
-    Routine routine = Routine.noId(name, description);
+    Routine routine = Routine.noId(name, description, checkboxes);
     bool isSuccessful = await _routineService.addRoutine(routine);
     if (isSuccessful) {
       return true;
     }
     return false;
+  }
+
+  void addCheckbox() {
+    checkboxes.add('');
+    notifyListeners();
   }
 }

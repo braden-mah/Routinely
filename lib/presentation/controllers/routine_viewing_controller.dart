@@ -50,6 +50,5 @@ class RoutineViewingController extends ChangeNotifier {
   Future<void> getAllRoutineEntries() async {
     List<RoutineEntry> routineEntries =
         await _routineEntryService.getAllRoutineEntries(routine.id!);
-    print(routineEntries[1].id);
   }
 }
