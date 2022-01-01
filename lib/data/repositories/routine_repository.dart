@@ -25,6 +25,8 @@ class RoutineRepository {
   Future<bool> deleteRoutine(int id) async {
     int rowsDeleted =
         await _database.db.delete('routines', where: 'id = ?', whereArgs: [id]);
+    await _database.db
+        .delete('entries', where: 'routineId = ?', whereArgs: [id]);
     return (rowsDeleted == 1);
   }
 

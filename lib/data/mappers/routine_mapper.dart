@@ -3,8 +3,8 @@ import 'package:routinely/domain/entities/routine_entity.dart';
 class RoutineMapper {
   static Routine fromMap(Map<String, dynamic> map) {
     String checkboxes = map['checkboxes'];
-    return Routine.withId(
-        map['id'], map['name'], map['description'], checkboxes.split('\t'));
+    return Routine.withId(map['id'], map['name'], map['description'],
+        checkboxes != '' ? checkboxes.split('\t') : []);
   }
 
   static Map<String, dynamic> toMap(Routine routine) {

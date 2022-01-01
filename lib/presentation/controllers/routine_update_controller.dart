@@ -14,7 +14,7 @@ class RoutineUpdateController extends ChangeNotifier {
     id = routine.id!;
     name = routine.title;
     description = routine.description;
-    checkboxes = routine.checkboxes;
+    checkboxes = [...routine.checkboxes];
   }
 
   void handleUpdate(BuildContext context) async {

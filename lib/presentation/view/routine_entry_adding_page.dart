@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:routinely/core/view/custom_text_field.dart';
-import 'package:routinely/core/view/date_picker_field.dart';
+import 'package:routinely/core/view/routine_entry_editing_scroll_view.dart';
 import 'package:routinely/presentation/controllers/routine_entry_adding_controller.dart';
 
 class RoutineEntryAddingPage extends StatelessWidget {
@@ -17,28 +16,13 @@ class RoutineEntryAddingPage extends StatelessWidget {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(title: const Text('Add Routine Entry')),
-        body: ListView(children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-            child: DatePickerField(
-              onDateChanged: (DateTime date) => controller.date = date,
-              displayDate: controller.date ?? DateTime.now(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-            child: CustomTextField(
-                validator: (val) {
-                  if (val != null && val.length > 1000) {
-                    return "Max length of 1000 characters";
-                  }
-                  return null;
-                },
-                onChanged: (val) => controller.note = val,
-                labelText: 'Optional Note',
-                lines: 3),
-          ),
-        ]),
+        body: RoutineEntryEditingScrollView(
+          checkboxes: controller.routine.checkboxes,
+          date: controller.date,
+          onCheckboxChanged: controller.updateCheckbox,
+          onDateChanged: (DateTime date) => controller.date = date,
+          onNoteChanged: (val) => controller.note = val,
+        ),
         floatingActionButton: FloatingActionButton(
             onPressed: () async {
               if (_formKey.currentState!.validate()) {

@@ -13,7 +13,7 @@ void main() {
   MockRoutineEntryRepository routineEntryRepository =
       MockRoutineEntryRepository();
   RoutineEntry routineEntry =
-      RoutineEntry.noId(1, 'test', DateTime.parse('2015-05-08'));
+      RoutineEntry.noId(1, 'test', DateTime.parse('2015-05-08'), []);
   RoutineEntryService routineEntryService =
       RoutineEntryService(routineEntryRepository);
   group('adding a routine entry', () {

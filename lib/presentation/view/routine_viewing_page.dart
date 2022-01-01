@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:routinely/core/view/routine_entry_tile.dart';
 import 'package:routinely/presentation/controllers/routine_viewing_controller.dart';
 
 class RoutineViewingPage extends StatelessWidget {
@@ -45,6 +46,24 @@ class RoutineViewingPage extends StatelessWidget {
                             '- ${controller.routine.checkboxes[index]}');
                       }),
                 ),
+                Visibility(
+                  visible: controller.routineEntries.isNotEmpty,
+                  child: Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.routineEntries.length,
+                          itemBuilder: (context, index) {
+                            final routineEntry =
+                                controller.routineEntries[index];
+                            return RoutineEntryTile(
+                                numerator: routineEntry.checkboxes.length,
+                                denominator:
+                                    controller.routine.checkboxes.length,
+                                date: routineEntry.date);
+                          })),
+                )
               ],
             ),
           ),

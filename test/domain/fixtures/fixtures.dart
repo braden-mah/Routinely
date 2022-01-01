@@ -8,7 +8,7 @@ const List<Routine> routinesFixture = [
 ];
 
 List<RoutineEntry> routineEntriesFixture = [
-  RoutineEntry.withId(1, 1, 'test', DateTime.parse('0001-01-01')),
-  RoutineEntry.withId(2, 1, 'test 2', DateTime.parse('2015-03-07')),
-  RoutineEntry.withId(3, 1, 'test 3', DateTime.parse('1983-07-25')),
+  RoutineEntry.withId(1, 1, 'test', DateTime.parse('0001-01-01'), []),
+  RoutineEntry.withId(2, 1, 'test 2', DateTime.parse('2015-03-07'), []),
+  RoutineEntry.withId(3, 1, 'test 3', DateTime.parse('1983-07-25'), []),
 ];

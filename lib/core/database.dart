@@ -11,7 +11,7 @@ class RoutineDatabase {
       await db.execute(
           'CREATE TABLE routines(id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL, description TEXT NOT NULL, checkboxes TEXT)');
       await db.execute(
-          'CREATE TABLE entries(id INTEGER NOT NULL PRIMARY KEY, routineId INTEGER NOT NULL, note TEXT, date TEXT)');
+          'CREATE TABLE entries(id INTEGER NOT NULL PRIMARY KEY, routineId INTEGER NOT NULL, note TEXT, date TEXT, checkboxes TEXT)');
     }, version: 1);
   }
 }

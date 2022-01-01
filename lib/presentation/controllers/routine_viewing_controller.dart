@@ -9,11 +9,13 @@ import 'package:routinely/presentation/view/routine_update_page.dart';
 
 class RoutineViewingController extends ChangeNotifier {
   late final Routine routine;
+  late List<RoutineEntry> routineEntries = [];
   final RoutineService _routineService;
   final RoutineEntryService _routineEntryService;
   RoutineViewingController(this._routineService, this._routineEntryService);
   void init(Routine routine) async {
     this.routine = routine;
+    await getAllRoutineEntries();
   }
 
   void handleDelete(BuildContext context) async {
@@ -48,7 +50,8 @@ class RoutineViewingController extends ChangeNotifier {
   }
 
   Future<void> getAllRoutineEntries() async {
-    List<RoutineEntry> routineEntries =
+    routineEntries =
         await _routineEntryService.getAllRoutineEntries(routine.id!);
+    notifyListeners();
   }
 }

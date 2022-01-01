@@ -4,7 +4,7 @@ import 'package:routinely/domain/entities/routine_entry_entity.dart';
 
 void main() {
   RoutineEntry routineEntry =
-      RoutineEntry.noId(1, 'test', DateTime.parse('0001-01-01'));
+      RoutineEntry.noId(1, 'test', DateTime.parse('0001-01-01'), []);
   Map<String, dynamic> map = {
     'routineId': 1,
     'note': 'test',
