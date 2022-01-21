@@ -6,6 +6,7 @@ import 'package:routinely/domain/services/routine_entry_service.dart';
 import 'package:routinely/domain/services/routine_service.dart';
 import 'package:routinely/presentation/controllers/routine_adding_controller.dart';
 import 'package:routinely/presentation/controllers/routine_entry_adding_controller.dart';
+import 'package:routinely/presentation/controllers/routine_entry_update_controller.dart';
 import 'package:routinely/presentation/controllers/routine_entry_viewing_controller.dart';
 import 'package:routinely/presentation/controllers/routine_update_controller.dart';
 import 'package:routinely/presentation/controllers/routine_viewing_controller.dart';
@@ -30,5 +31,8 @@ void injectDependencies() {
   di.registerFactory(() => RoutineUpdateController(di<RoutineService>()));
   di.registerFactory(
       () => RoutineEntryAddingController(di<RoutineEntryService>()));
-  di.registerFactory(() => RoutineEntryViewingController());
+  di.registerFactory(
+      () => RoutineEntryViewingController(di<RoutineEntryService>()));
+  di.registerFactory(
+      () => RoutineEntryUpdateController(di<RoutineEntryService>()));
 }

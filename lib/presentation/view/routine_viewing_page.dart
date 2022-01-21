@@ -57,11 +57,15 @@ class RoutineViewingPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final routineEntry =
                                 controller.routineEntries[index];
-                            return RoutineEntryTile(
-                                numerator: routineEntry.checkboxes.length,
-                                denominator:
-                                    controller.routine.checkboxes.length,
-                                date: routineEntry.date);
+                            return GestureDetector(
+                              onTap: () => controller.goToEntryViewingPage(
+                                  context, routineEntry),
+                              child: RoutineEntryTile(
+                                  numerator: routineEntry.checkboxes.length,
+                                  denominator:
+                                      controller.routine.checkboxes.length,
+                                  date: routineEntry.date),
+                            );
                           })),
                 )
               ],

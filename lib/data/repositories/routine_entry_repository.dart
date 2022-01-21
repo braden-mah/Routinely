@@ -29,8 +29,8 @@ class RoutineEntryRepository {
   Future<bool> updateRoutineEntry(int id, RoutineEntry routineEntry) async {
     final map = RoutineEntryMapper.toMap(routineEntry);
     int val = await _database.db.rawUpdate(
-        'UPDATE entries SET date = ?, note = ? WHERE id = ?',
-        [map['date'], map['note'], id]);
+        'UPDATE entries SET date = ?, note = ?, checkboxes = ? WHERE id = ?',
+        [map['date'], map['note'], map['checkboxes'], id]);
     return val == 1;
   }
 }
